@@ -31,6 +31,7 @@ import org.ccsds.moims.mo.mal.MALException;
  */
 public class Identifier implements Attribute
 {
+
   private String value;
 
   /**
@@ -38,6 +39,7 @@ public class Identifier implements Attribute
    */
   public Identifier()
   {
+    this.value = "";
   }
 
   /**
@@ -47,14 +49,14 @@ public class Identifier implements Attribute
    */
   public Identifier(final String value)
   {
-    if(null == value)
-    {
-      Logger.getLogger(Identifier.class.getName()).log(Level.WARNING, 
+    if (null == value) {
+      Logger.getLogger(Identifier.class.getName()).log(Level.WARNING,
           "The Identifier has been initialized with an invalid null value. Problems might occur while encoding the element.",
           new MALException());
+      this.value = "";
+    } else {
+      this.value = value;
     }
-    
-    this.value = value;
   }
 
   @Override
@@ -78,7 +80,6 @@ public class Identifier implements Attribute
 //  {
 //    this.value = value;
 //  }
-
   @Override
   public Long getShortForm()
   {
@@ -110,13 +111,13 @@ public class Identifier implements Attribute
   }
 
   @Override
- public void encode(final MALEncoder encoder) throws MALException
+  public void encode(final MALEncoder encoder) throws MALException
   {
     encoder.encodeIdentifier(this);
   }
 
   @Override
- public Element decode(final MALDecoder decoder) throws MALException
+  public Element decode(final MALDecoder decoder) throws MALException
   {
     return decoder.decodeIdentifier();
   }
@@ -124,16 +125,13 @@ public class Identifier implements Attribute
   @Override
   public boolean equals(final Object obj)
   {
-    if (null == obj)
-    {
+    if (null == obj) {
       return false;
     }
-    if (this == obj)
-    {
+    if (this == obj) {
       return true;
     }
-    if (!(obj instanceof Identifier))
-    {
+    if (!(obj instanceof Identifier)) {
       return false;
     }
     return this.value.equals(((Identifier) obj).value);
