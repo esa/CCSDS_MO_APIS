@@ -31,7 +31,6 @@ import org.ccsds.moims.mo.mal.MALException;
  */
 public class Identifier implements Attribute
 {
-
   private String value;
 
   /**
@@ -49,12 +48,15 @@ public class Identifier implements Attribute
    */
   public Identifier(final String value)
   {
-    if (null == value) {
+    if (null == value)
+    {
       Logger.getLogger(Identifier.class.getName()).log(Level.WARNING,
           "The Identifier has been initialized with an invalid null value. Problems might occur while encoding the element.",
           new MALException());
       this.value = "";
-    } else {
+    }
+    else
+    {
       this.value = value;
     }
   }
@@ -125,13 +127,16 @@ public class Identifier implements Attribute
   @Override
   public boolean equals(final Object obj)
   {
-    if (null == obj) {
+    if (null == obj)
+    {
       return false;
     }
-    if (this == obj) {
+    if (this == obj)
+    {
       return true;
     }
-    if (!(obj instanceof Identifier)) {
+    if (!(obj instanceof Identifier))
+    {
       return false;
     }
     return this.value.equals(((Identifier) obj).value);
